@@ -1,0 +1,24 @@
+name: My App Demo - Testing
+
+on: push
+
+jobs:
+  unit-testing:
+    name: Unit Testing
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        cmd: [test]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: echo "code checkout"
+
+      - name: Install dependencies on ${{ matrix.os }}
+        run: echo "Installing dependencies"
+
+      - name: Run ${{ matrix.cmd }}
+        run: echo "npm ${{ matrix.cmd }}"
