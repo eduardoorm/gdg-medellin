@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: echo "code checkout"
+        run: echo "code checkout"
 
       - name: Install dependencies on ${{ matrix.os }}
         run: echo "Installing dependencies"
