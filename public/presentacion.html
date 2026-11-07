@@ -36,13 +36,13 @@
             <div class="float-chip chip-firebase"><span class="firebase-icon">✦</span> FIREBASE</div>
             <div class="orbit-point point-one"></div><div class="orbit-point point-two"></div>
           </div>
-          <span class="cover-index">01 <b>/</b> 30</span>
+          <span class="cover-index">01 <b>/</b> 31</span>
         </section>
 
         <section class="slide" aria-label="Diapositiva 2: presentación del speaker">
           <div class="slide-heading reveal"><span class="kicker">01 — PRESENTACIÓN</span><h2>Hola, soy <em>Eduardo.</em></h2></div>
           <div class="speaker-layout">
-            <div class="speaker-avatar reveal delay-1"><span>EO</span><i>✳</i></div>
+            <div class="speaker-avatar reveal delay-1"><img src="assets/eduardo-speaker.jpg" alt="Eduardo Ormeño presentando en un auditorio"><i>✳</i></div>
             <div class="speaker-content reveal delay-2">
               <p class="speaker-role">Ingeniero de sistemas · Full Stack Developer @ Visma Latam</p>
               <div class="credential-grid">
@@ -68,22 +68,22 @@
           <div class="slide-heading reveal"><span class="kicker">03 — ANATOMÍA</span><h2>Un workflow, paso <em>a paso.</em></h2><p>Cuatro piezas se unen para automatizar una tarea.</p></div>
           <div class="anatomy-layout">
             <div class="anatomy-stack">
-              <div class="anatomy-item reveal delay-1"><span class="anatomy-icon">⌁</span><div><b>Workflow</b><small>El proceso completo</small></div><span class="anatomy-tag">test.yml</span></div>
-              <div class="anatomy-item reveal delay-2"><span class="anatomy-icon">▦</span><div><b>Job</b><small>Un conjunto de tareas</small></div><span class="anatomy-tag">test</span></div>
-              <div class="anatomy-item reveal delay-3"><span class="anatomy-icon">☷</span><div><b>Step</b><small>Una instrucción del job</small></div><span class="anatomy-tag">step</span></div>
-              <div class="anatomy-item reveal delay-4"><span class="anatomy-icon">✳</span><div><b>Action</b><small>Una pieza reutilizable</small></div><span class="anatomy-tag">uses:</span></div>
+              <div class="anatomy-item anatomy-workflow reveal delay-1"><span class="anatomy-icon">⌁</span><div><b>Workflow</b><small>El proceso completo</small></div><span class="anatomy-tag">test.yml</span></div>
+              <div class="anatomy-item anatomy-job reveal delay-2"><span class="anatomy-icon">▦</span><div><b>Job</b><small>Un conjunto de tareas</small></div><span class="anatomy-tag">test</span></div>
+              <div class="anatomy-item anatomy-step reveal delay-3"><span class="anatomy-icon">☷</span><div><b>Step</b><small>Una instrucción del job</small></div><span class="anatomy-tag">step</span></div>
+              <div class="anatomy-item anatomy-action reveal delay-4"><span class="anatomy-icon">✳</span><div><b>Action</b><small>Una pieza reutilizable</small></div><span class="anatomy-tag">uses:</span></div>
             </div>
-            <div class="code-window reveal delay-2"><div class="window-bar"><span></span><span></span><span></span><label>test.yml</label></div><pre><code><i>name:</i> <b>Test</b>
-<i>on:</i> <b>[push]</b>
+            <div class="code-window workflow-code reveal delay-2"><div class="window-bar"><span></span><span></span><span></span><label>test.yml</label></div><pre><code><span class="yaml-workflow"><i>name:</i> <b>Test</b>
+<i>on:</i> <b>[push]</b></span>
 
-<i>jobs:</i>
+<span class="yaml-job"><i>jobs:</i>
   <i>test:</i>
-    <i>runs-on:</i> <b>ubuntu-latest</b>
-    <i>steps:</i>
+    <i>runs-on:</i> <b>ubuntu-latest</b></span>
+    <span class="yaml-steps"><i>steps:</i>
       - <i>uses:</i> <b>actions/checkout@v4</b>
       - <i>uses:</i> <b>actions/setup-node@v4</b>
       - <i>run:</i> <b>npm install</b>
-      - <i>run:</i> <b>npm test</b></code></pre></div>
+      - <i>run:</i> <b>npm test</b></span></code></pre></div>
           </div>
         </section>
 
@@ -209,44 +209,6 @@
           </div>
         </section>
 
-        <section class="slide slide-reuse" aria-label="Diapositiva 13: workflows reutilizables">
-          <div class="slide-heading reveal"><span class="kicker">12 — REUTILIZACIÓN</span><h2>Conecta y reutiliza<br><em>workflows.</em></h2><p><code>workflow_run</code> inicia un flujo al terminar otro; <code>workflow_call</code> permite compartirlo e invocarlo.</p></div>
-          <div class="reuse-layout">
-            <article class="reuse-card reuse-run-card reveal delay-1">
-              <div class="reuse-card-heading"><span class="reuse-icon">↻</span><span class="mini-label">AL TERMINAR OTRO WORKFLOW</span><h3>workflow_run</h3><p>Despliega después de que termine el workflow <b>Build</b>, solo si fue exitoso.</p></div>
-              <div class="code-window reuse-code"><div class="window-bar"><span></span><span></span><span></span><label>deploy.yml</label></div><pre><code><i>on:</i>
-  <i>workflow_run:</i>
-    <i>workflows:</i> [<b>"Build"</b>]
-    <i>types:</i> [<b>completed</b>]
-
-<i>jobs:</i>
-  <i>deploy:</i>
-    <i>if:</i> <b>github.event.workflow_run.conclusion == 'success'</b>
-    <i>runs-on:</i> <b>ubuntu-latest</b>
-    <i>steps:</i>
-      - <i>run:</i> <b>echo "Deploying application"</b></code></pre></div>
-              <div class="mini-flow"><span>Build termina</span><i>→</i><span>Deploy</span></div>
-            </article>
-            <article class="reuse-card reuse-highlight reuse-call-card reveal delay-2">
-              <div class="reuse-card-heading"><span class="reuse-icon">⇄</span><span class="mini-label">DEFINE Y LLAMA UN WORKFLOW REUTILIZABLE</span><h3>workflow_call</h3><p>Define el flujo compartido y llámalo desde otro workflow.</p></div>
-              <div class="reuse-call-examples">
-                <div class="code-window reuse-code"><div class="window-bar"><span></span><span></span><span></span><label>build.yml · reusable</label></div><pre><code><i>on:</i>
-  <i>workflow_call:</i>
-
-<i>jobs:</i>
-  <i>build:</i>
-    <i>runs-on:</i> <b>ubuntu-latest</b>
-    <i>steps:</i>
-      - <i>run:</i> <b>echo "Building application"</b></code></pre></div>
-                <div class="code-window reuse-code"><div class="window-bar"><span></span><span></span><span></span><label>main.yml · caller</label></div><pre><code><i>jobs:</i>
-  <i>call-build:</i>
-    <i>uses:</i> <b>./.github/workflows/build.yml</b></code></pre></div>
-              </div>
-              <div class="mini-flow"><span>Workflow A</span><i>→</i><span>Build reutilizable</span></div>
-            </article>
-          </div>
-        </section>
-
         <section class="slide slide-context" aria-label="Diapositiva 14: usar el contexto GitHub en un workflow">
           <div class="slide-heading reveal"><span class="kicker">13 — CONTEXTO</span><h2>Datos del evento,<br><em>directo en YAML.</em></h2><p>El contexto <code>github</code> permite personalizar mensajes y decisiones en cada ejecución.</p></div>
           <div class="context-layout">
@@ -280,6 +242,44 @@
       <i>projectId:</i> <b>my-firebase-project</b></code></pre>
               <p class="secrets-code-note"><span class="green-pulse"></span> El valor sensible no aparece en el YAML ni en los logs.</p>
             </div>
+          </div>
+        </section>
+
+        <section class="slide slide-reuse" aria-label="Diapositiva 16: workflows reutilizables después de secretos">
+          <div class="slide-heading reveal"><span class="kicker">15 — REUTILIZACIÓN</span><h2>Conecta y reutiliza<br><em>workflows.</em></h2><p><code>workflow_run</code> inicia un flujo al terminar otro; <code>workflow_call</code> permite compartirlo e invocarlo.</p></div>
+          <div class="reuse-layout">
+            <article class="reuse-card reuse-run-card reveal delay-1">
+              <div class="reuse-card-heading"><span class="reuse-icon">↻</span><span class="mini-label">AL TERMINAR OTRO WORKFLOW</span><h3>workflow_run</h3><p>Despliega después de que termine el workflow <b>Build</b>, solo si fue exitoso.</p></div>
+              <div class="code-window reuse-code"><div class="window-bar"><span></span><span></span><span></span><label>deploy.yml</label></div><pre><code><i>on:</i>
+  <i>workflow_run:</i>
+    <i>workflows:</i> [<b>"Build"</b>]
+    <i>types:</i> [<b>completed</b>]
+
+<i>jobs:</i>
+  <i>deploy:</i>
+    <i>if:</i> <b>github.event.workflow_run.conclusion == 'success'</b>
+    <i>runs-on:</i> <b>ubuntu-latest</b>
+    <i>steps:</i>
+      - <i>run:</i> <b>echo "Deploying application"</b></code></pre></div>
+              <div class="mini-flow"><span>Build termina</span><i>→</i><span>Deploy</span></div>
+            </article>
+            <article class="reuse-card reuse-highlight reuse-call-card reveal delay-2">
+              <div class="reuse-card-heading"><span class="reuse-icon">⇄</span><span class="mini-label">DEFINE Y LLAMA UN WORKFLOW REUTILIZABLE</span><h3>workflow_call</h3><p>Define el flujo compartido y llámalo desde otro workflow.</p></div>
+              <div class="reuse-call-examples">
+                <div class="code-window reuse-code"><div class="window-bar"><span></span><span></span><span></span><label>build.yml · reusable</label></div><pre><code><i>on:</i>
+  <i>workflow_call:</i>
+
+<i>jobs:</i>
+  <i>build:</i>
+    <i>runs-on:</i> <b>ubuntu-latest</b>
+    <i>steps:</i>
+      - <i>run:</i> <b>echo "Building application"</b></code></pre></div>
+                <div class="code-window reuse-code"><div class="window-bar"><span></span><span></span><span></span><label>main.yml · caller</label></div><pre><code><i>jobs:</i>
+  <i>call-build:</i>
+    <i>uses:</i> <b>./.github/workflows/build.yml</b></code></pre></div>
+              </div>
+              <div class="mini-flow"><span>Workflow A</span><i>→</i><span>Build reutilizable</span></div>
+            </article>
           </div>
         </section>
 
@@ -381,8 +381,17 @@
           <p class="firebase-repeat-note reveal delay-3"><span class="spark-icon">✳</span> Cada cambio requeriría repetir el deploy manualmente. Ese es el paso que automatizaremos.</p>
         </section>
 
-        <section class="slide slide-firebase-actions" aria-label="Diapositiva 23: workflow de Firebase para previsualizar Pull Requests">
-          <div class="slide-heading reveal"><span class="kicker">22 — WORKFLOW DE PREVIEW</span><h2>Cada Pull Request,<br><em>una vista previa.</em></h2><p>Firebase publica el cambio en un canal temporal para revisarlo antes de integrarlo.</p></div>
+        <section class="slide slide-firebase-manual-result" aria-label="Diapositiva 23: resultado del despliegue manual en Firebase Hosting">
+          <div class="slide-heading reveal"><span class="kicker">22 — RESULTADO MANUAL</span><h2>Deploy terminado.<br><em>La web ya está publicada.</em></h2><p>Firebase genera una URL pública y abre el sitio que estaba dentro de <code>public/</code>.</p></div>
+          <div class="manual-result-layout">
+            <div class="manual-console code-window reveal delay-1"><div class="window-bar"><span></span><span></span><span></span><label>Terminal · Firebase CLI</label></div><div class="terminal-output"><p><span class="terminal-prompt">$</span> firebase deploy --only hosting</p><p class="terminal-muted">=== Deploying to 'gdgmedellin-e9172'...</p><p><span class="terminal-ok">✔</span> hosting[gdgmedellin-e9172]: file upload complete</p><p><span class="terminal-ok">✔</span> hosting[gdgmedellin-e9172]: version finalized</p><p><span class="terminal-ok">✔</span> Deploy complete!</p><p class="terminal-url-label">Hosting URL:</p><a href="https://gdgmedellin-e9172.web.app" target="_blank" rel="noreferrer">https://gdgmedellin-e9172.web.app <b>↗</b></a></div></div>
+            <div class="manual-browser browser-preview reveal delay-2"><div class="browser-chrome"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-address"><span>⌑</span> gdgmedellin-e9172.web.app <b>↗</b></div></div><div class="browser-content"><div class="preview-nav"><span class="preview-brand"><i>DF</i> DevFest Medellín</span><small>PUBLICADO · FIREBASE HOSTING</small></div><div class="preview-hero"><span>✳ DEVFEST MEDELLÍN · 2026</span><h3>Ideas que<br><em>mueven.</em></h3><p>La versión que estaba en public/ ahora está disponible en internet.</p><div class="preview-button">SITIO EN LÍNEA <b>✓</b></div></div><div class="preview-footer"><span>FIREBASE HOSTING</span><i>✓ LIVE</i></div></div></div>
+          </div>
+          <p class="firebase-live-note reveal delay-3"><span class="green-pulse"></span> Esta URL es el resultado del deploy manual; después GitHub Actions repetirá este proceso.</p>
+        </section>
+
+        <section class="slide slide-firebase-actions" aria-label="Diapositiva 24: workflow de Firebase para previsualizar Pull Requests">
+          <div class="slide-heading reveal"><span class="kicker">23 — WORKFLOW DE PREVIEW</span><h2>Cada Pull Request,<br><em>una vista previa.</em></h2><p>Firebase publica el cambio en un canal temporal para revisarlo antes de integrarlo.</p></div>
           <div class="firebase-single-action reveal delay-1">
             <div class="firebase-action-title"><span>01</span><div><small>AL ABRIR O ACTUALIZAR UN PR</small><h3>Preview Channel</h3></div></div>
             <div class="code-window firebase-action-code"><div class="window-bar"><span></span><span></span><span></span><label>firebase-hosting-pull-request.yml</label></div><pre><code><i>on:</i> [<b>pull_request</b>]
@@ -403,8 +412,8 @@
           <p class="firebase-actions-note reveal delay-2"><span class="green-pulse"></span> La cuenta de servicio se guarda en GitHub Secrets, nunca en el YAML.</p>
         </section>
 
-        <section class="slide slide-firebase-actions slide-firebase-merge" aria-label="Diapositiva 24: workflow de Firebase al integrar cambios a main">
-          <div class="slide-heading reveal"><span class="kicker">23 — WORKFLOW DE PRODUCCIÓN</span><h2>Al integrar en main,<br><em>deploy Live.</em></h2><p>El push a main activa el segundo YAML y publica la versión aprobada en Firebase Hosting.</p></div>
+        <section class="slide slide-firebase-actions slide-firebase-merge" aria-label="Diapositiva 25: workflow de Firebase al integrar cambios a main">
+          <div class="slide-heading reveal"><span class="kicker">24 — WORKFLOW DE PRODUCCIÓN</span><h2>Al integrar en main,<br><em>deploy Live.</em></h2><p>El push a main activa el segundo YAML y publica la versión aprobada en Firebase Hosting.</p></div>
           <div class="firebase-single-action firebase-action-live reveal delay-1">
             <div class="firebase-action-title"><span>02</span><div><small>AL INTEGRAR CAMBIOS EN MAIN</small><h3>Live Channel</h3></div></div>
             <div class="code-window firebase-action-code"><div class="window-bar"><span></span><span></span><span></span><label>firebase-hosting-merge.yml</label></div><pre><code><i>on:</i>
@@ -427,8 +436,8 @@
           <p class="firebase-actions-note reveal delay-2"><span class="green-pulse"></span> Preview en Pull Request · producción después del merge a main.</p>
         </section>
 
-        <section class="slide slide-firebase-sync" aria-label="Diapositiva 25: sincronizar cambios para activar GitHub Actions">
-          <div class="slide-heading reveal"><span class="kicker">24 — SOURCE CONTROL</span><h2>Un clic para sincronizar.<br><em>Un push inicia el deploy.</em></h2><p>Con el commit listo en VS Code, sincroniza la rama <code>main</code> para enviar el cambio a GitHub.</p></div>
+        <section class="slide slide-firebase-sync" aria-label="Diapositiva 26: sincronizar cambios para activar GitHub Actions">
+          <div class="slide-heading reveal"><span class="kicker">25 — SOURCE CONTROL</span><h2>Un clic para sincronizar.<br><em>Un push inicia el deploy.</em></h2><p>Con el commit listo en VS Code, sincroniza la rama <code>main</code> para enviar el cambio a GitHub.</p></div>
           <div class="vscode-sync-window reveal delay-1" aria-label="Interfaz simulada de Control de Código Fuente de Visual Studio Code">
             <div class="vscode-sync-titlebar"><span class="vscode-window-dots"><i></i><i></i><i></i></span><strong>gdg-medellin — Visual Studio Code</strong><span>⌕　◫　···</span></div>
             <div class="vscode-sync-body">
@@ -468,8 +477,8 @@
           <div class="sync-callout reveal delay-2"><span class="sync-icon">⟳</span><p>Al pulsar <b>Sincronizar cambios</b>, VS Code hace push a <code>main</code> y GitHub ejecuta la Action de producción.</p></div>
         </section>
 
-        <section class="slide slide-firebase-run" aria-label="Diapositiva 26: ejecución de Firebase Hosting en GitHub Actions">
-          <div class="slide-heading reveal"><span class="kicker">25 — EJECUCIÓN</span><h2>El push activa<br><em>el workflow.</em></h2><p>GitHub ejecuta la Action de Firebase y muestra el estado de cada tarea.</p></div>
+        <section class="slide slide-firebase-run" aria-label="Diapositiva 27: ejecución de Firebase Hosting en GitHub Actions">
+          <div class="slide-heading reveal"><span class="kicker">26 — EJECUCIÓN</span><h2>El push activa<br><em>el workflow.</em></h2><p>GitHub ejecuta la Action de Firebase y muestra el estado de cada tarea.</p></div>
           <div class="run-summary-layout firebase-run-layout reveal delay-1">
             <section class="actions-run-panel" aria-label="Simulación del workflow Firebase Hosting completado">
               <div class="actions-run-top"><span class="github-mark">●</span><div><small>GITHUB ACTIONS · MAIN</small><strong>Deploy to Firebase Hosting on merge</strong></div><span class="run-menu">···</span></div>
@@ -481,20 +490,20 @@
           </div>
         </section>
 
-        <section class="slide slide-firebase-log" aria-label="Diapositiva 27: log con URL del sitio publicado">
-          <div class="slide-heading reveal"><span class="kicker">26 — RESULTADO DEL DEPLOY</span><h2>Despliegue listo.<br><em>Tu sitio está en línea.</em></h2><p>El log de Firebase confirma la publicación y muestra la URL disponible.</p></div>
+        <section class="slide slide-firebase-log" aria-label="Diapositiva 28: log con URL del sitio publicado">
+          <div class="slide-heading reveal"><span class="kicker">27 — RESULTADO DEL DEPLOY</span><h2>Despliegue listo.<br><em>Tu sitio está en línea.</em></h2><p>El log de Firebase confirma la publicación y muestra la URL disponible.</p></div>
           <div class="firebase-log-window code-window reveal delay-1"><div class="window-bar"><span></span><span></span><span></span><label>Deploy to Firebase Hosting · logs</label></div><div class="firebase-log-lines"><p><span>✓</span> Uploaded files successfully</p><p><span>✓</span> Version finalized</p><p><span>✓</span> Release complete</p><p class="log-url-label">Hosting URL:</p><a href="https://gdgmedellin-e9172.web.app" target="_blank" rel="noreferrer">https://gdgmedellin-e9172.web.app <b>↗</b></a></div></div>
           <div class="firebase-live-note reveal delay-2"><span class="green-pulse"></span> La URL corresponde al proyecto de ejemplo; reemplázala por la que devuelve tu deploy.</div>
         </section>
 
-        <section class="slide slide-firebase-live" aria-label="Diapositiva 28: sitio publicado en Firebase Hosting">
-          <div class="slide-heading reveal"><span class="kicker">27 — PUBLICADO</span><h2>Del editor<br><em>a la web.</em></h2><p>Cada sincronización aprobada actualiza el sitio de Firebase Hosting.</p></div>
+        <section class="slide slide-firebase-live" aria-label="Diapositiva 29: sitio publicado en Firebase Hosting">
+          <div class="slide-heading reveal"><span class="kicker">28 — PUBLICADO</span><h2>Del editor<br><em>a la web.</em></h2><p>Cada sincronización aprobada actualiza el sitio de Firebase Hosting.</p></div>
           <div class="browser-preview reveal delay-1"><div class="browser-chrome"><div class="browser-dots"><i></i><i></i><i></i></div><div class="browser-address"><span>⌑</span> https://gdgmedellin-e9172.web.app <b>↗</b></div></div><div class="browser-content"><div class="preview-nav"><span class="preview-brand"><i>DF</i> DevFest Medellín</span><small>COMUNIDAD · TECNOLOGÍA</small></div><div class="preview-hero"><span>✳ DEVFEST MEDELLÍN · 2026</span><h3>Ideas que<br><em>mueven.</em></h3><p>Una comunidad que aprende, comparte y construye en Medellín.</p><div class="preview-button">DESCUBRE EL EVENTO <b>↗</b></div></div><div class="preview-footer"><span>FIREBASE HOSTING</span><i>✓ LIVE</i></div></div></div>
           <p class="firebase-live-note reveal delay-2"><span class="green-pulse"></span> Actualizado automáticamente desde GitHub Actions.</p>
         </section>
 
-        <section class="slide" aria-label="Diapositiva 29: buenas prácticas">
-          <div class="slide-heading reveal"><span class="kicker">28 — PARA LLEVAR</span><h2>Buenas prácticas,<br>mejores <em>flujos.</em></h2></div>
+        <section class="slide" aria-label="Diapositiva 30: buenas prácticas">
+          <div class="slide-heading reveal"><span class="kicker">29 — PARA LLEVAR</span><h2>Buenas prácticas,<br>mejores <em>flujos.</em></h2></div>
           <div class="practice-list">
             <div class="practice reveal delay-1"><span>01</span><b>Workflows reutilizables</b><i>↗</i></div>
             <div class="practice reveal delay-2"><span>02</span><b>Versiona Actions mediante SHA</b><i>↗</i></div>
@@ -504,23 +513,22 @@
           </div>
         </section>
 
-        <section class="slide slide-thanks" aria-label="Diapositiva 30: agradecimientos">
+        <section class="slide slide-thanks" aria-label="Diapositiva 31: agradecimientos">
           <div class="thanks-orbit" aria-hidden="true"><span>✳</span></div>
           <span class="kicker reveal">GITHUB EDUCATION · GDG MEDELLÍN</span>
           <h2 class="reveal delay-1">¡Muchas<br><em>gracias!</em></h2>
           <p class="reveal delay-2">Sigamos construyendo en comunidad.</p>
-          <div class="thanks-handles reveal delay-3"><a href="https://github.com/eduorm1" target="_blank" rel="noreferrer">@eduorm1 <span>↗</span></a><a href="https://github.com/joseormeno" target="_blank" rel="noreferrer">@joseormeño <span>↗</span></a></div>
           <div class="qr-cta reveal delay-4">
-            <a class="qr-link" href="https://github.com/eduorm1" target="_blank" rel="noreferrer" aria-label="Escanear o abrir el perfil de GitHub de @eduorm1">
+            <a class="qr-link" href="https://github.com/eduorm1" target="_blank" rel="noreferrer" aria-label="Escanear o abrir el perfil de GitHub de @eduardoorm">
               <svg id="profile-qr" viewBox="0 0 41 41" role="img" aria-labelledby="qr-title qr-description" shape-rendering="crispEdges">
-                <title id="qr-title">Código QR de @eduorm1</title>
-                <desc id="qr-description">Escanea para visitar github.com/eduorm1</desc>
+                <title id="qr-title">Código QR de @eduardoorm</title>
+                <desc id="qr-description">Escanea para visitar github.com/eduardoorm</desc>
                 <rect width="41" height="41" fill="#fff" />
                 <path fill="#101114" d="" />
               </svg>
             </a>
             <span>ESCANEA Y CONECTA</span>
-            <small>github.com/eduorm1</small>
+            <small>github.com/eduardoorm</small>
           </div>
         </section>
       </div>
@@ -529,7 +537,7 @@
         <div class="progress-track"><span class="progress-fill" id="progress-fill"></span></div>
         <div class="control-row">
           <div class="deck-label"><span class="deck-label-dot"></span> GITHUB ACTIONS <b>×</b> FIREBASE</div>
-          <div class="control-center"><button class="icon-button prev-button" type="button" aria-label="Diapositiva anterior" title="Anterior (←)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><span class="counter"><strong id="current-slide">01</strong><i>/</i><span id="total-slides">30</span></span><button class="icon-button next-button" type="button" aria-label="Diapositiva siguiente" title="Siguiente (→)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>
+          <div class="control-center"><button class="icon-button prev-button" type="button" aria-label="Diapositiva anterior" title="Anterior (←)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><span class="counter"><strong id="current-slide">01</strong><i>/</i><span id="total-slides">31</span></span><button class="icon-button next-button" type="button" aria-label="Siguiente (→)" title="Siguiente (→)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>
           <div class="keyboard-hint"><span>←</span><span>→</span><small>para navegar</small></div>
         </div>
       </footer>
