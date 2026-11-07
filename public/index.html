@@ -1,87 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/13.2.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/13.2.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/13.2.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <meta name="theme-color" content="#101114">
+    <meta name="description" content="DevFest Medellín 2026: tecnología, ideas y comunidad. Muy pronto compartiremos todos los detalles.">
+    <title>DevFest Medellín 2026 — La tecnología nos conecta</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div id="message">
-      <h2>Holaa°</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <header class="topbar">
+      <nav class="nav wrap" aria-label="Navegación principal">
+        <a class="brand" href="#inicio" aria-label="DevFest Medellín, inicio">
+          <span class="brand-mark" aria-hidden="true">DF</span>
+          <span>DevFest <small>MEDELLÍN · 2026</small></span>
+        </a>
+        <div class="nav-links" id="nav-links">
+          <a href="#experiencia">La experiencia</a>
+          <a href="#comunidad">Comunidad</a>
+          <a href="#detalles">Detalles</a>
+        </div>
+        <a class="nav-cta" href="#detalles">Más información <span aria-hidden="true">↗</span></a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-grid wrap">
+          <div class="hero-copy">
+            <span class="eyebrow">La comunidad se encuentra</span>
+            <h1>Ideas que<br><span class="line-two">mueven</span><span class="medellin">DevFest Medellín · 2026</span></h1>
+            <p>Un encuentro para explorar lo que viene, compartir lo que sabemos y crear nuevas conexiones alrededor de la tecnología.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#experiencia">Descubre el evento <span class="arrow" aria-hidden="true">↘</span></a>
+              <a class="button button-quiet" href="#detalles">Ver detalles <span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="hero-art" aria-label="Ilustración de DevFest Medellín 2026" role="img">
+            <div class="art-orbit" aria-hidden="true"></div>
+            <div class="art-glow" aria-hidden="true"></div>
+            <span class="floating-star" aria-hidden="true">✳</span>
+            <div class="event-card" aria-hidden="true">
+              <div class="card-top"><span>Comunidad · Tecnología</span><span>2026</span></div>
+              <div class="card-art">
+                <div class="card-sun"></div>
+                <div class="card-ring"></div>
+                <div class="card-ring ring-two"></div>
+                <span class="card-monogram">D</span>
+              </div>
+              <h2 class="card-title">DevFest<span>Medellín</span></h2>
+              <div class="card-footer"><span>Aprender · Conectar</span><span>Colombia</span></div>
+            </div>
+            <div class="floating-note"><strong>Una ciudad.</strong>Muchas ideas.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="details" id="detalles" aria-label="Información del evento">
+        <div class="details-grid wrap">
+          <div class="detail">
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M16 3v4M8 3v4M4 10h16"/></svg></span>
+            <span><span class="detail-label">Cuándo</span><strong>Fecha por anunciar</strong></span>
+          </div>
+          <div class="detail">
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <span><span class="detail-label">Dónde</span><strong>Medellín, Colombia</strong></span>
+          </div>
+          <div class="detail">
+            <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M3 12h18M5.64 5.64l12.72 12.72m0-12.72L5.64 18.36"/><circle cx="12" cy="12" r="8.5"/></svg></span>
+            <span><span class="detail-label">Inscripciones</span><strong>Próximamente</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="experiencia">
+        <div class="wrap">
+          <div class="section-heading">
+            <div><span class="eyebrow">Mucho más que tecnología</span><h2>Ven por las ideas.<br>Quédate por la gente.</h2></div>
+            <p>Un espacio para aprender en comunidad, descubrir nuevas perspectivas y llevarte inspiración para lo que viene.</p>
+          </div>
+          <div class="experience-grid">
+            <article class="experience-card">
+              <span class="experience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9L19 16Z"/></svg></span>
+              <h3>Ideas que inspiran</h3><p>Conversaciones y aprendizajes para mirar la tecnología desde nuevas perspectivas.</p>
+            </article>
+            <article class="experience-card">
+              <span class="experience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="8.5"/><path d="m7 7 10 10m0-10L7 17"/></svg></span>
+              <h3>Aprende haciendo</h3><p>Explora herramientas, comparte conocimiento y convierte la curiosidad en nuevas habilidades.</p>
+            </article>
+            <article class="experience-card"></article>
+              <span class="experience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20v-1.5a6.5 6.5 0 0 1 13 0V20ZM16 5a3.5 3.5 0 0 1 0 6.8m2 3a5 5 0 0 1 3.5 4.8V20"/></svg></span>
+              <h3>Conecta en comunidad</h3><p>Encuentra personas que construyen, se hacen preguntas y creen en compartir lo que saben.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="community" id="comunidad">
+        <div class="community-panel wrap">
+          <div><span class="eyebrow">Hecho en comunidad</span><h2>La tecnología<br>nos conecta.<br><span>Medellín nos reúne.</span></h2></div>
+          <div class="community-copy"><p>DevFest es una celebración de quienes crean, aprenden y comparten. Nos vemos en Medellín para vivir juntos una nueva edición.</p><a class="button" href="#detalles">Los detalles, muy pronto <span class="arrow" aria-hidden="true">↗</span></a></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner wrap">
+        <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">DF</span><span>DevFest <small>MEDELLÍN · 2026</small></span></a>
+        <span class="footer-note">Una iniciativa de comunidad. Información oficial próximamente.</span>
+      </div>
+    </footer>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      const menuButton = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+      menuButton.addEventListener('click', () => {
+        const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!isOpen));
+        menuButton.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+        navLinks.classList.toggle('is-open', !isOpen);
+      });
+
+      navLinks.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuButton.setAttribute('aria-label', 'Abrir menú');
+          navLinks.classList.remove('is-open');
         }
       });
     </script>
